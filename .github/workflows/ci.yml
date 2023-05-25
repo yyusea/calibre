@@ -31,22 +31,15 @@ jobs:
               run:
                   python setup/unix-ci.py bootstrap
 
-            - name: build_dep calibre
-              run:
-                  python setup.py build_dep windows
-
-            - name: build_dep32 calibre
-              run:
-                  python setup.py build_dep windows 32
-
-            - name: build_dist calibre
-              run:
-                  python setup.py win --dont-sign
-
-
             - name: ls calibre
               run:
                   ls -Rla
+
+            - name: Archive production artifacts
+              uses: actions/upload-artifact@v3
+              with:
+                  name: dist
+                  path: .
 
 
 #             - name: Test calibre
