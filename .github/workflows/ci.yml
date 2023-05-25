@@ -33,7 +33,7 @@ jobs:
 
             - name: ls calibre
               run:
-                  ls -Rla
+                  ls -Rla .
 
             - name: Archive production artifacts
               uses: actions/upload-artifact@v3
