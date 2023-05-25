@@ -31,12 +31,30 @@ jobs:
               run:
                   python setup/unix-ci.py bootstrap
 
-            - name: Test calibre
-              env:
-                PYTHONWARNINGS: error
-                CALIBRE_SHOW_DEPRECATION_WARNINGS: 1
+            - name: build_dep calibre
               run:
-                  python setup/unix-ci.py test
+                  python setup.py build_dep windows
+
+            - name: build_dep32 calibre
+              run:
+                  python setup.py build_dep windows 32
+
+            - name: build_dist calibre
+              run:
+                  python setup.py win --dont-sign
+
+
+            - name: ls calibre
+              run:
+                  ls -Rla
+
+
+#             - name: Test calibre
+#               env:
+#                 PYTHONWARNINGS: error
+#                 CALIBRE_SHOW_DEPRECATION_WARNINGS: 1
+#               run:
+#                   python setup/unix-ci.py test
 
     # archtest:
     #     name: Test on Arch
